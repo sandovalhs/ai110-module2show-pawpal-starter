@@ -5,8 +5,36 @@
 **a. Initial design**
 
 - Briefly describe your initial UML design.
-- What classes did you include, and what responsibilities did you assign to each?
+Users should be able to enter basic owner + pet info, add/edit tasks (duration + priority at minimum) and Generate a daily schedule/plan based on constraints and priorities
 
+What information it needs to hold (attributes)
+User class
+- owner name
+
+Pet Class
+- pet name and species
+
+task class
+- name of task
+- duration
+- priority (high, medium, low)
+
+daily schedule class
+- ordered list based on priority first then lowest duration
+
+What actions it can perform (methods)
+User class
+-edit owner name
+
+Pet class
+-add/remove pet (includes name and species)
+
+task class
+- mark task as complete
+- add/edit task
+
+daily schedule class
+-generate schedule
 **b. Design changes**
 
 - Did your design change during implementation?
