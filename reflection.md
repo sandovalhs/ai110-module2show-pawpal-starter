@@ -40,6 +40,8 @@ daily schedule class
 - Did your design change during implementation?
 - If yes, describe at least one change and why you made it.
 
+yes, the ai suggested i move methods that add/edit a pet into the user and i agreed.  it also suggested that users should have a list of pets and tasks.
+
 ---
 
 ## 2. Scheduling Logic and Tradeoffs
