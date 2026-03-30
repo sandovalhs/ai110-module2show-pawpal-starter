@@ -22,6 +22,18 @@ Your final app should:
 - Display the plan clearly (and ideally explain the reasoning)
 - Include tests for the most important scheduling behaviors
 
+## Smarter Scheduling
+
+The scheduler has been extended with four algorithmic features beyond basic priority sorting:
+
+**Sort by Duration** — `Scheduler.sort_by_time()` re-orders the current schedule by task duration, shortest first. Useful for owners who want to knock out quick tasks before tackling longer ones.
+
+**Filter by Pet or Status** — `Scheduler.filter_tasks()` returns a focused subset of tasks without changing the schedule itself. Filter by completion status (`completed=True/False`), by pet name, or combine both — for example, all of Mochi's incomplete tasks.
+
+**Recurring Tasks** — Tasks can be marked `"daily"` or `"weekly"`. When `Scheduler.mark_task_complete()` is called on a recurring task, it automatically creates the next occurrence with an updated due date (`+1 day` or `+7 days`) and adds it to the owner's task list.
+
+**Conflict Detection** — `Scheduler.detect_conflicts()` checks every pair of timed tasks for overlapping time windows. Any task with a `scheduled_time` set (in `HH:MM` format) is included in the check. Conflicts are returned as human-readable warning strings rather than errors, so the app never crashes — it just informs the owner.
+
 ## Getting started
 
 ### Setup

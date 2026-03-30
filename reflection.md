@@ -49,12 +49,19 @@ yes, the ai suggested i move methods that add/edit a pet into the user and i agr
 **a. Constraints and priorities**
 
 - What constraints does your scheduler consider (for example: time, priority, preferences)?
+my scheduler considers duration and priority, so tasked marked as higher priority are more important and shorter duration is prioritized to be completed first.
 - How did you decide which constraints mattered most?
+
+I figured completing as many tasks as possible is better than completing longer tasks.
 
 **b. Tradeoffs**
 
 - Describe one tradeoff your scheduler makes.
 - Why is that tradeoff reasonable for this scenario?
+
+Shortest-duration tiebreaker (within the same priority) is a greedy heuristic. It minimizes the number of tasks left unfinished if you run out of time, but it ignores whether a longer task has a hard deadline that shorter ones don't.
+
+
 
 ---
 
