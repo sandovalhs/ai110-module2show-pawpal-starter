@@ -111,6 +111,12 @@ st.divider()
 st.subheader("Build Schedule")
 st.caption("This button calls your scheduling logic from Phase 2.")
 
+sort_mode = st.radio(
+    "Sort order",
+    ["By priority (default)", "Quickest first"],
+    horizontal=True,
+)
+
 # Generate schedule — calls Scheduler.generate_schedule() from Phase 2
 if st.button("Generate schedule"):
     if "owner" not in st.session_state or not st.session_state.owner.tasks:
@@ -118,6 +124,28 @@ if st.button("Generate schedule"):
     else:
         scheduler = Scheduler(st.session_state.owner)
         scheduler.generate_schedule()
-        st.success("Today's Schedule")
-        for i, task in enumerate(scheduler.ordered_tasks, start=1):
-            st.markdown(f"**{i}.** {task}")
+
+        if sort_mode == "Quickest first":
+            scheduler.sort_by_time()
+
+        conflicts = scheduler.detect_conflicts()
+        if conflicts:
+            for warning in conflicts:
+                st.warning(warning)
+
+        if scheduler.ordered_tasks:
+            st.success(f"Today's Schedule — {len(scheduler.ordered_tasks)} task(s)")
+            st.table([
+                {
+                    "#": i,
+                    "Task": t.name,
+                    "Pet": str(t.pet) if t.pet else "—",
+                    "Priority": t.priority.name,
+                    "Duration (min)": t.duration,
+                    "Time": t.scheduled_time or "—",
+                    "Status": "✓ Done" if t.completed else "Pending",
+                }
+                for i, t in enumerate(scheduler.ordered_tasks, start=1)
+            ])
+        else:
+            st.info("No incomplete tasks to schedule.")

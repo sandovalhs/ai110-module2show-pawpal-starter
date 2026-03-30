@@ -22,6 +22,15 @@ Your final app should:
 - Display the plan clearly (and ideally explain the reasoning)
 - Include tests for the most important scheduling behaviors
 
+## Features
+
+- **Priority-based scheduling** — `Scheduler.generate_schedule()` filters out completed tasks and sorts the rest by priority (HIGH → MEDIUM → LOW), using duration as a tiebreaker so shorter tasks of equal priority come first.
+- **Sort by duration (quickest first)** — `Scheduler.sort_by_time()` re-orders the current schedule by task duration, shortest first. Useful for owners who want to knock out quick tasks before tackling longer ones.
+- **Conflict detection** — `Scheduler.detect_conflicts()` checks every pair of timed tasks for overlapping time windows using interval overlap math (`start_a < end_b and start_b < end_a`). Back-to-back tasks are not flagged. Warnings are returned as strings so the app never crashes.
+- **Daily and weekly recurrence** — Tasks can be marked `"daily"` or `"weekly"`. When `Scheduler.mark_task_complete()` is called on a recurring task, it automatically creates the next occurrence with an updated due date (`+1 day` or `+7 days`) and appends it to the owner's task list.
+- **Filter by pet or completion status** — `Scheduler.filter_tasks()` returns a focused subset of tasks without modifying the schedule. Supports filtering by `completed` (True/False) and/or `pet_name`, and both filters can be combined.
+- **Multi-pet support** — Tasks can be assigned to individual pets; owner and scheduler both handle multiple pets simultaneously.
+
 ## Smarter Scheduling
 
 The scheduler has been extended with four algorithmic features beyond basic priority sorting:
@@ -53,3 +62,8 @@ pip install -r requirements.txt
 5. Add tests to verify key behaviors.
 6. Connect your logic to the Streamlit UI in `app.py`.
 7. Refine UML so it matches what you actually built.
+
+### DEMO
+
+<a href="ai110-module2show-pawpal-starter/demo.png" target="_blank"><img src='ai110-module2show-pawpal-starter/demo.png' title='PawPal App' width='' alt='PawPal App' class='center-block' /></a>.
+
