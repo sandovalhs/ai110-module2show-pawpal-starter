@@ -65,5 +65,5 @@ pip install -r requirements.txt
 
 ### DEMO
 
-<a href="ai110-module2show-pawpal-starter/demo.png" target="_blank"><img src='ai110-module2show-pawpal-starter/demo.png' title='PawPal App' width='' alt='PawPal App' class='center-block' /></a>.
+<a href="demo.png" target="_blank"><img src='demo.png' title='PawPal App' width='' alt='PawPal App' class='center-block' /></a>.
 
